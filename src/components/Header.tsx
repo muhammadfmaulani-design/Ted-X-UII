@@ -1,12 +1,23 @@
-// src/components/Header.tsx
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Menu, X, Ticket } from 'lucide-react';
 
-const Header: React.FC = () => {
+// 1. Tambahkan Interface Props
+interface HeaderProps {
+  onOpenModal: () => void;
+}
+
+// 2. Terima props onOpenModal
+const Header: React.FC<HeaderProps> = ({ onOpenModal }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const toggleMenu = () => setIsOpen(!isOpen);
+
+  // Fungsi pembantu agar saat klik "Buy Ticket" di mobile, menu otomatis tertutup
+  const handleBuyTicketMobile = () => {
+    toggleMenu();
+    onOpenModal();
+  };
 
   return (
     <header className="flex justify-between items-center px-6 md:px-8 h-[80px] bg-black/95 fixed top-0 w-full z-50 border-b border-[#222] backdrop-blur-md">
@@ -21,19 +32,18 @@ const Header: React.FC = () => {
       <nav className="hidden md:flex gap-8 items-center">
         <Link to="/" className="text-white no-underline font-semibold uppercase text-sm transition-colors duration-300 hover:text-[#e62b1e]">Home</Link>
         <Link to="/about" className="text-white no-underline font-semibold uppercase text-sm transition-colors duration-300 hover:text-[#e62b1e]">About</Link>
-        
-        {/* Ini Tambahan Menu Speakers-nya */}
         <Link to="/speakers" className="text-white no-underline font-semibold uppercase text-sm transition-colors duration-300 hover:text-[#e62b1e]">Speakers</Link>
         
-        <a 
-          href="#ticket" 
-          className="bg-[#e62b1e] text-white px-6 py-2.5 rounded font-extrabold tracking-[0.5px] transition-all duration-300 border border-[#e62b1e] no-underline uppercase text-sm hover:bg-transparent hover:text-[#e62b1e] hover:shadow-[0_0_15px_rgba(230,43,30,0.5)] hover:-translate-y-0.5 flex items-center gap-2"
+        {/* 3. Ganti <a> jadi <button> dan pasang onClick */}
+        <button 
+          onClick={onOpenModal} 
+          className="bg-[#e62b1e] text-white px-6 py-2.5 rounded font-extrabold tracking-[0.5px] transition-all duration-300 border border-[#e62b1e] uppercase text-sm hover:bg-transparent hover:text-[#e62b1e] hover:shadow-[0_0_15px_rgba(230,43,30,0.5)] hover:-translate-y-0.5 flex items-center gap-2 cursor-pointer"
         >
           Buy Ticket <Ticket size={16} />
-        </a>
+        </button>
       </nav>
 
-      {/* Tombol Toggle Mobile (Hamburger Menu) */}
+      {/* Tombol Toggle Mobile */}
       <button 
         className="md:hidden text-white cursor-pointer" 
         onClick={toggleMenu} 
@@ -48,17 +58,15 @@ const Header: React.FC = () => {
       >
         <Link to="/" onClick={toggleMenu} className="text-white text-2xl font-semibold uppercase transition-colors hover:text-[#e62b1e]">Home</Link>
         <Link to="/about" onClick={toggleMenu} className="text-white text-2xl font-semibold uppercase transition-colors hover:text-[#e62b1e]">About</Link>
-        
-        {/* Ini Tambahan Menu Speakers untuk Mobile */}
         <Link to="/speakers" onClick={toggleMenu} className="text-white text-2xl font-semibold uppercase transition-colors hover:text-[#e62b1e]">Speakers</Link>
         
-        <a 
-          href="#ticket" 
-          onClick={toggleMenu} 
-          className="mt-4 bg-[#e62b1e] text-white px-8 py-4 w-4/5 text-center rounded font-extrabold tracking-[0.5px] transition-all duration-300 border border-[#e62b1e] uppercase text-lg hover:bg-transparent hover:text-[#e62b1e]"
+        {/* 4. Ganti <a> jadi <button> di Mobile */}
+        <button 
+          onClick={handleBuyTicketMobile} 
+          className="mt-4 bg-[#e62b1e] text-white px-8 py-4 w-4/5 text-center rounded font-extrabold tracking-[0.5px] transition-all duration-300 border border-[#e62b1e] uppercase text-lg hover:bg-transparent hover:text-[#e62b1e] cursor-pointer"
         >
           Buy Ticket
-        </a>
+        </button>
       </div>
     </header>
   );
