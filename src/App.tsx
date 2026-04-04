@@ -8,7 +8,7 @@ import Speakers from './pages/speakers';
 
 // Import Components
 import Header from './components/Header';
-import Transaction from './components/transaction'; // Pastikan file ini sudah dibuat
+// import Transaction from './components/transaction'; // Pastikan file ini sudah dibuat
 
 const App: React.FC = () => {
   // 1. State Modal
@@ -37,13 +37,13 @@ const App: React.FC = () => {
         </main>
 
         {/* 4. Pasang Modal Transaction secara Global */}
-        <Transaction 
+        {/* <Transaction 
           isOpen={isModalOpen}
           onClose={() => setIsModalOpen(false)}
           categoryId={ticketData.id}
           categoryName={ticketData.name}
           price={ticketData.price}
-        />
+        /> */}
         
       </div>
     </Router>
