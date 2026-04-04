@@ -61,12 +61,12 @@ const Header: React.FC<HeaderProps> = ({ onOpenModal }) => {
         <Link to="/speakers" onClick={toggleMenu} className="text-white text-2xl font-semibold uppercase transition-colors hover:text-[#e62b1e]">Speakers</Link>
         
         {/* 4. Ganti <a> jadi <button> di Mobile */}
-        <button 
+        {/* <button 
           onClick={handleBuyTicketMobile} 
           className="mt-4 bg-[#e62b1e] text-white px-8 py-4 w-4/5 text-center rounded font-extrabold tracking-[0.5px] transition-all duration-300 border border-[#e62b1e] uppercase text-lg hover:bg-transparent hover:text-[#e62b1e] cursor-pointer"
         >
           Buy Ticket
-        </button>
+        </button> */}
       </div>
     </header>
   );
