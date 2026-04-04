@@ -35,12 +35,13 @@ const Header: React.FC<HeaderProps> = ({ onOpenModal }) => {
         <Link to="/speakers" className="text-white no-underline font-semibold uppercase text-sm transition-colors duration-300 hover:text-[#e62b1e]">Speakers</Link>
         
         {/* 3. Ganti <a> jadi <button> dan pasang onClick */}
-        {/* <button 
+        <button
+          disabled 
           onClick={onOpenModal} 
           className="bg-[#e62b1e] text-white px-6 py-2.5 rounded font-extrabold tracking-[0.5px] transition-all duration-300 border border-[#e62b1e] uppercase text-sm hover:bg-transparent hover:text-[#e62b1e] hover:shadow-[0_0_15px_rgba(230,43,30,0.5)] hover:-translate-y-0.5 flex items-center gap-2 cursor-pointer"
         >
           Buy Ticket <Ticket size={16} />
-        </button> */}
+        </button>
       </nav>
 
       {/* Tombol Toggle Mobile */}
@@ -61,12 +62,13 @@ const Header: React.FC<HeaderProps> = ({ onOpenModal }) => {
         <Link to="/speakers" onClick={toggleMenu} className="text-white text-2xl font-semibold uppercase transition-colors hover:text-[#e62b1e]">Speakers</Link>
         
         {/* 4. Ganti <a> jadi <button> di Mobile */}
-        {/* <button 
+        <button 
+          disabled
           onClick={handleBuyTicketMobile} 
           className="mt-4 bg-[#e62b1e] text-white px-8 py-4 w-4/5 text-center rounded font-extrabold tracking-[0.5px] transition-all duration-300 border border-[#e62b1e] uppercase text-lg hover:bg-transparent hover:text-[#e62b1e] cursor-pointer"
         >
           Buy Ticket
-        </button> */}
+        </button>
       </div>
     </header>
   );
