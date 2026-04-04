@@ -186,10 +186,34 @@ const Speakers: React.FC = () => {
                       </div>
 
                       {/* Ukuran Nama jauh lebih ramah mobile (2.5rem vs 5.5rem) */}
-                      <h2 className="text-[2.5rem] sm:text-[3rem] md:text-[5.5rem] font-black mb-4 md:mb-6 leading-[0.9] text-white tracking-tighter uppercase">
-                        {speaker.name.split(' ').map((word, i) => (
-                          <span key={i} className={i === 1 ? "text-[#e62b1e] block" : "block"}>{word}</span>
-                        ))}
+                     <h2 className="text-[2.5rem] sm:text-[3rem] md:text-[5.5rem] font-black mb-4 md:mb-6 leading-[0.9] text-white tracking-tighter uppercase">
+                        {(() => {
+                          // 1. Pisahkan Nama Utama dan Gelar berdasarkan tanda koma (,)
+                          const [mainName, ...titleArray] = speaker.name.split(',');
+                          const titles = titleArray.join(',').trim(); // "S. H., M. Kn." (jadi 1 kesatuan)
+
+                          // 2. Pisahkan Nama Utama jadi 2 baris (Kata pertama & Sisa kata)
+                          const nameWords = mainName.trim().split(' ');
+                          const firstName = nameWords[0];
+                          const lastName = nameWords.slice(1).join(' '); // Semua sisa nama digabung biar gak turun baris lagi
+
+                          return (
+                            <>
+                              {/* Baris 1: Nama Pertama (Putih) */}
+                              <span className="block">{firstName}</span>
+                              
+                              {/* Baris 2: Sisa Nama (Merah) - Hanya render jika ada nama belakang */}
+                              {lastName && <span className="block text-[#e62b1e]">{lastName}</span>}
+                              
+                              {/* Baris 3: Gelar - Ukuran font dikecilkan agar tidak menyaingi nama utama */}
+                              {titles && (
+                                <span className="block text-[1.2rem] sm:text-[1.5rem] md:text-[2rem] text-[#888] font-bold tracking-widest mt-2 md:mt-4 leading-normal">
+                                  {titles}
+                                </span>
+                              )}
+                            </>
+                          );
+                        })()}
                       </h2>
                       
                       {/* Topik juga dikecilkan di mobile */}
