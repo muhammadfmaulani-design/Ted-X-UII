@@ -1,49 +1,36 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 // Import Pages
-import Dashboard from './pages/dashboard';
+import Dashboard from './pages/dashboard'; // Pastikan nama file sesuai (huruf besar/kecil)
 import About from './pages/about';
 import Speakers from './pages/speakers'; 
+import Tickets from './pages/tickets';   // Import halaman Tickets
+import Checkout from './pages/checkout'; // Import halaman Checkout
 
 // Import Components
 import Header from './components/Header';
-import Transaction from './components/transaction'; // Pastikan file ini sudah dibuat
 
 const App: React.FC = () => {
-  // 1. State Modal
-  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-
-  // 2. Data Tiket (Ganti ID sesuai yang ada di Supabase kamu)
-  const ticketData = {
-    id: "503a5798-2495-4263-9d9b-d65274f8151d",
-    name: "Early Bird Ticket",
-    price: 75000
-  };
-
   return (
     <Router>
-      <div className="bg-black min-h-screen text-white font-sans overflow-x-hidden selection:bg-[#e62b1e] selection:text-white">
+      <div className="bg-[#000b18] min-h-screen text-white font-sans overflow-x-hidden selection:bg-[#e62b1e] selection:text-white">
         
-        {/* 3. Oper fungsi onOpenModal ke Header */}
-        <Header onOpenModal={() => setIsModalOpen(true)} />
+        {/* Header sekarang murni untuk navigasi, sudah tidak butuh props modal lagi */}
+        <Header />
 
-        <main className="pt-[80px]"> {/* Tambah padding-top supaya konten nggak ketutup Header fixed */}
+        {/* Konten Utama */}
+        <main> 
           <Routes>
             <Route path="/" element={<Dashboard />} />
             <Route path="/about" element={<About />} />
             <Route path="/speakers" element={<Speakers />} />
+            
+            {/* Rute baru untuk sistem E-Commerce TEDx */}
+            <Route path="/tickets" element={<Tickets />} />
+            <Route path="/checkout" element={<Checkout />} />
           </Routes>
         </main>
-
-        {/* 4. Pasang Modal Transaction secara Global */}
-        <Transaction 
-          isOpen={isModalOpen}
-          onClose={() => setIsModalOpen(false)}
-          categoryId={ticketData.id}
-          categoryName={ticketData.name}
-          price={ticketData.price}
-        />
         
       </div>
     </Router>
