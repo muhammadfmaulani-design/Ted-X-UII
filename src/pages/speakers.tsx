@@ -20,16 +20,12 @@ const SpeakerPhoto: React.FC<{ src: string; alt: string }> = ({ src, alt }) => {
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        // Otomatis true saat masuk layar, false saat keluar layar
         setInView(entry.isIntersecting);
       },
-      // threshold 0.3 artinya efek jalan saat 30% foto terlihat
       { threshold: 0.3 } 
     );
 
     if (imgRef.current) observer.observe(imgRef.current);
-    
-    // Jangan letakkan observer.disconnect() di atas, cukup di clean-up saja
     return () => observer.disconnect();
   }, []);
 
@@ -96,33 +92,42 @@ const Speakers: React.FC = () => {
   }, []);
 
   return (
-    <div className="pt-[80px] min-h-screen bg-black overflow-hidden">
+    <div className="pt-[80px] min-h-screen bg-[#000b18] overflow-hidden relative">
       
+      {/* GLOBAL RED AMBIENT GLOW (Biar background nggak kosong melompong) */}
+      <div className="absolute top-[-5%] right-[-10%] w-[50vw] h-[50vw] bg-[#e62b1e] rounded-full blur-[200px] opacity-[0.07] pointer-events-none z-0"></div>
+      <div className="absolute top-[40%] left-[-10%] w-[40vw] h-[40vw] bg-[#003cff] rounded-full blur-[180px] opacity-[0.05] pointer-events-none z-0"></div>
+
       {/* --- HEADER SECTION --- */}
-      <div className="pt-16 md:pt-20 px-6 md:px-8 max-w-[1200px] mx-auto pb-8 md:pb-12">
+      <div className="pt-16 md:pt-20 px-6 md:px-8 max-w-[1200px] mx-auto pb-8 md:pb-12 relative z-10">
         <RevealOnScroll animation="fade-up">
-          <div className="relative w-full my-4 md:my-8 py-12 md:py-16 px-6 border-y border-[rgba(255,255,255,0.05)] bg-[radial-gradient(ellipse_at_center,rgba(230,43,30,0.15)_0%,rgba(0,0,0,0)_70%)] text-center">
-            {/* Ukuran heading header disesuaikan untuk mobile */}
-            <h2 className="text-[2.5rem] md:text-[5rem] uppercase font-black tracking-tighter mb-0 leading-none text-white">
-              MEET THE <span className="text-[#e62b1e]">SPEAKERS</span>
-            </h2>
-            <p className="mt-4 md:mt-6 text-[#a3a3a3] max-w-[600px] mx-auto text-base md:text-xl font-light">
-              Visionaries who challenge our perspectives. 
-              Coming from diverse backgrounds to share ideas worth spreading.
-            </p>
+          <div className="relative w-full my-4 md:my-8 py-12 md:py-16 px-6 border-y border-[rgba(230,43,30,0.4)] bg-[radial-gradient(ellipse_at_center,rgba(0,28,73,0.5)_0%,rgba(0,11,24,1)_100%)] text-center shadow-[inset_0_10px_50px_-10px_rgba(0,11,24,1),inset_0_-10px_50px_-10px_rgba(0,11,24,1)] overflow-hidden rounded-2xl md:rounded-none">
+            
+            {/* Grid Pattern halus */}
+            <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:40px_40px] z-0"></div>
+
+            <div className="relative z-10">
+              <h2 className="text-[2.5rem] md:text-[5rem] uppercase font-black tracking-tighter mb-0 leading-none text-white drop-shadow-md">
+                MEET THE <span className="text-[#e62b1e]">SPEAKERS</span>
+              </h2>
+              <p className="mt-4 md:mt-6 text-[#8ba2c9] max-w-[600px] mx-auto text-base md:text-xl font-light">
+                Visionaries who challenge our perspectives. 
+                Coming from diverse backgrounds to share ideas worth spreading.
+              </p>
+            </div>
           </div>
         </RevealOnScroll>
       </div>
 
       {/* --- SPEAKERS LIST --- */}
-      <div className="w-full pb-24">
+      <div className="w-full pb-24 relative z-10">
         {loading ? (
           <div className="flex flex-col items-center justify-center py-32 space-y-4">
-            <div className="w-12 h-12 border-4 border-[#333] border-t-[#e62b1e] rounded-full animate-spin"></div>
-            <p className="text-[#888] text-base md:text-lg font-bold uppercase tracking-widest animate-pulse">Loading Lineup...</p>
+            <div className="w-12 h-12 border-4 border-[#1a2b4c] border-t-[#e62b1e] rounded-full animate-spin shadow-[0_0_15px_rgba(230,43,30,0.5)]"></div>
+            <p className="text-[#8ba2c9] text-base md:text-lg font-bold uppercase tracking-widest animate-pulse">Loading Lineup...</p>
           </div>
         ) : speakersData.length === 0 ? (
-          <div className="text-center py-32 text-[#666]">
+          <div className="text-center py-32 text-[#8ba2c9]">
             <p className="text-lg md:text-xl font-bold uppercase tracking-widest">Lineup is kept secret for now.</p>
           </div>
         ) : (
@@ -132,41 +137,39 @@ const Speakers: React.FC = () => {
             return (
               <section 
                 key={speaker.id} 
-                className={`py-16 md:py-32 px-6 md:px-8 border-b border-[#111] relative ${!isEven ? 'bg-[#050505]' : 'bg-black'}`}
+                className={`py-16 md:py-32 px-6 md:px-8 border-b border-[#1a2b4c] relative ${!isEven ? 'bg-[#020d24]' : 'bg-[#000b18]'}`}
               >
+                {/* Efek siluet merah tipis di setiap transisi section */}
+                <div className={`absolute top-0 w-1/2 h-[1px] bg-gradient-to-r ${isEven ? 'from-transparent via-[#e62b1e]/20 to-transparent left-1/4' : 'from-transparent via-[#e62b1e]/10 to-transparent right-1/4'}`}></div>
+
                 <div className={`max-w-[1200px] w-full mx-auto flex flex-col md:flex-row items-center justify-between gap-10 md:gap-24 ${!isEven ? 'md:flex-row-reverse' : ''}`}>
                   
                   {/* --- VISUAL SIDE (FOTO BESAR) --- */}
                   <div className="flex-1 flex justify-center relative z-10 w-full">
                     <RevealOnScroll animation={isEven ? "slide-left" : "slide-right"}>
-                      
-                      {/* max-w diturunkan agar lebih proporsional di mobile maupun desktop */}
                       <div className="relative group cursor-pointer w-full max-w-[260px] sm:max-w-[320px] md:max-w-[400px]">
                         
                         <div className="absolute -inset-4 bg-[#e62b1e]/20 rounded-2xl blur-2xl opacity-0 group-hover:opacity-100 transition-all duration-700"></div>
                         
-                        {/* Aspect Ratio diubah ke 4/5 agar tidak terlalu jangkung */}
-                        <div className="w-full aspect-[4/5] bg-[#0a0a0a] rounded-2xl flex items-center justify-center border border-white/5 shadow-2xl overflow-hidden relative transition-transform duration-700 group-hover:scale-[1.02]">
+                        <div className="w-full aspect-[4/5] bg-[#001c49]/30 rounded-2xl flex items-center justify-center border border-[#2a4374] shadow-2xl overflow-hidden relative transition-transform duration-700 group-hover:scale-[1.02]">
                           
                           {speaker.photo_url ? (
                             <SpeakerPhoto src={speaker.photo_url} alt={speaker.name} />
                           ) : null}
                           
-                          <div className="absolute inset-0 flex items-center justify-center bg-[#111]" style={{ display: speaker.photo_url ? 'none' : 'flex' }}>
-                            <User size={100} className="text-[#333] md:w-[150px] md:h-[150px]" />
+                          <div className="absolute inset-0 flex items-center justify-center bg-[#020d24]" style={{ display: speaker.photo_url ? 'none' : 'flex' }}>
+                            <User size={100} className="text-[#2a4374] md:w-[150px] md:h-[150px]" />
                           </div>
                           
-                          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-60 group-hover:opacity-80 transition-all duration-500 pointer-events-none"></div>
+                          <div className="absolute inset-0 bg-gradient-to-t from-[#000b18]/90 via-[#000b18]/20 to-transparent opacity-60 group-hover:opacity-80 transition-all duration-500 pointer-events-none"></div>
                           
-                          {/* Ukuran tulisan watermark dikecilkan di mobile */}
                           <div className="absolute bottom-4 left-6 md:bottom-6 md:left-8 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 delay-100 pointer-events-none">
                              <span className="text-white font-black text-xl md:text-2xl uppercase tracking-tighter">TEDx<span className="text-[#e62b1e]">UII</span></span>
                           </div>
                         </div>
                         
-                        {/* Dekorasi bingkai ikut disesuaikan */}
                         <div 
-                          className={`absolute -bottom-4 md:-bottom-6 w-24 h-24 md:w-32 md:h-32 border-b-4 border-[#e62b1e] transition-all duration-500 pointer-events-none -z-10
+                          className={`absolute -bottom-4 md:-bottom-6 w-24 h-24 md:w-32 md:h-32 border-b-4 border-[#e62b1e] transition-all duration-500 pointer-events-none -z-10 shadow-[0_10px_20px_rgba(230,43,30,0.2)]
                             ${isEven 
                               ? '-right-4 md:-right-6 border-r-4 rounded-br-2xl group-hover:translate-x-2 group-hover:translate-y-2' 
                               : '-left-4 md:-left-6 border-l-4 rounded-bl-2xl group-hover:-translate-x-2 group-hover:translate-y-2'
@@ -181,33 +184,25 @@ const Speakers: React.FC = () => {
                   <div className="flex-1 text-center md:text-left z-20 mt-8 md:mt-0">
                     <RevealOnScroll animation={isEven ? "slide-right" : "slide-left"} delay="delay-200">
                       
-                      <div className="inline-block bg-[#e62b1e] px-3 py-1 md:px-4 md:py-1.5 rounded text-[0.65rem] md:text-[0.75rem] font-black mb-4 md:mb-6 text-white tracking-[2px] md:tracking-[3px] uppercase shadow-[0_0_15px_rgba(230,43,30,0.4)]">
+                      {/* Aksen Merah: Badge Glassmorphism diubah nuansa kemerahan */}
+                      <div className="inline-block bg-[#e62b1e]/10 backdrop-blur-sm border border-[#e62b1e]/30 px-4 py-1.5 md:px-5 md:py-2 rounded-full text-[0.65rem] md:text-[0.75rem] font-bold mb-4 md:mb-6 text-[#e62b1e] tracking-[2px] md:tracking-[3px] uppercase shadow-[0_0_15px_rgba(230,43,30,0.15)]">
                         {speaker.role || "Featured Speaker"}
                       </div>
 
-                      {/* Ukuran Nama jauh lebih ramah mobile (2.5rem vs 5.5rem) */}
-                     <h2 className="text-[2.5rem] sm:text-[3rem] md:text-[5.5rem] font-black mb-4 md:mb-6 leading-[0.9] text-white tracking-tighter uppercase">
+                      <h2 className="text-[2.5rem] sm:text-[3rem] md:text-[5.5rem] font-black mb-4 md:mb-6 leading-[0.9] text-white tracking-tighter uppercase drop-shadow-md">
                         {(() => {
-                          // 1. Pisahkan Nama Utama dan Gelar berdasarkan tanda koma (,)
                           const [mainName, ...titleArray] = speaker.name.split(',');
-                          const titles = titleArray.join(',').trim(); // "S. H., M. Kn." (jadi 1 kesatuan)
-
-                          // 2. Pisahkan Nama Utama jadi 2 baris (Kata pertama & Sisa kata)
+                          const titles = titleArray.join(',').trim();
                           const nameWords = mainName.trim().split(' ');
                           const firstName = nameWords[0];
-                          const lastName = nameWords.slice(1).join(' '); // Semua sisa nama digabung biar gak turun baris lagi
+                          const lastName = nameWords.slice(1).join(' ');
 
                           return (
                             <>
-                              {/* Baris 1: Nama Pertama (Putih) */}
                               <span className="block">{firstName}</span>
-                              
-                              {/* Baris 2: Sisa Nama (Merah) - Hanya render jika ada nama belakang */}
-                              {lastName && <span className="block text-[#e62b1e]">{lastName}</span>}
-                              
-                              {/* Baris 3: Gelar - Ukuran font dikecilkan agar tidak menyaingi nama utama */}
+                              {lastName && <span className="block text-[#e62b1e] drop-shadow-[0_0_10px_rgba(230,43,30,0.3)]">{lastName}</span>}
                               {titles && (
-                                <span className="block text-[1.2rem] sm:text-[1.5rem] md:text-[2rem] text-[#888] font-bold tracking-widest mt-2 md:mt-4 leading-normal">
+                                <span className="block text-[1.2rem] sm:text-[1.5rem] md:text-[2rem] text-[#8ba2c9] font-bold tracking-widest mt-2 md:mt-4 leading-normal">
                                   {titles}
                                 </span>
                               )}
@@ -216,15 +211,15 @@ const Speakers: React.FC = () => {
                         })()}
                       </h2>
                       
-                      {/* Topik juga dikecilkan di mobile */}
-                      <p className="text-lg sm:text-xl md:text-2xl text-white font-medium mb-6 md:mb-8 italic opacity-90 border-l-4 border-[#e62b1e] pl-4 md:pl-6 text-left">
+                      {/* Aksen Merah: Garis pinggir dikasih efek shadow merah biar nyala */}
+                      <p className="text-lg sm:text-xl md:text-2xl text-[#e5e5e5] font-medium mb-6 md:mb-8 italic border-l-4 border-[#e62b1e] pl-4 md:pl-6 text-left shadow-[-10px_0_15px_-10px_rgba(230,43,30,0.4)]">
                         "{speaker.topic || "Topic to be announced soon"}"
                       </p>
                       
-                      <div className="w-12 md:w-16 h-1 bg-gradient-to-r from-[#e62b1e] to-transparent mb-6 md:mb-8 mx-auto md:mx-0"></div>
+                      {/* Aksen Merah: Garis pemisah dibuat lebih tegas */}
+                      <div className="w-16 md:w-24 h-[2px] bg-gradient-to-r from-[#e62b1e] via-[#e62b1e]/50 to-transparent mb-6 md:mb-8 mx-auto md:mx-0"></div>
                       
-                      {/* Teks deskripsi lebih ringan dibaca di HP */}
-                      <div className="text-base md:text-lg text-[#999] leading-relaxed max-w-[500px] text-left mx-auto md:mx-0 font-light">
+                      <div className="text-base md:text-lg text-[#8ba2c9] leading-relaxed max-w-[500px] text-left mx-auto md:mx-0 font-light">
                         <p>
                           {speaker.desc || "Information about this speaker is currently being curated. Check back later for updates."}
                         </p>
