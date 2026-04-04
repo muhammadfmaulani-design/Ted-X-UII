@@ -165,7 +165,14 @@ const Speakers: React.FC = () => {
                         </div>
                         
                         {/* Dekorasi bingkai ikut disesuaikan */}
-                        <div className={`absolute -bottom-4 md:-bottom-6 ${isEven ? '-right-4 md:-right-6' : '-left-4 md:-left-6'} w-24 h-24 md:w-32 md:h-32 border-b-4 border-r-4 border-[#e62b1e] rounded-br-2xl transition-all duration-500 group-hover:translate-x-2 group-hover:translate-y-2 pointer-events-none`}></div>
+                        <div 
+                          className={`absolute -bottom-4 md:-bottom-6 w-24 h-24 md:w-32 md:h-32 border-b-4 border-[#e62b1e] transition-all duration-500 pointer-events-none -z-10
+                            ${isEven 
+                              ? '-right-4 md:-right-6 border-r-4 rounded-br-2xl group-hover:translate-x-2 group-hover:translate-y-2' 
+                              : '-left-4 md:-left-6 border-l-4 rounded-bl-2xl group-hover:-translate-x-2 group-hover:translate-y-2'
+                            }
+                          `}
+                        ></div>
                       </div>
                     </RevealOnScroll>
                   </div>
