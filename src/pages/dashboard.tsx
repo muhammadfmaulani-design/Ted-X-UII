@@ -123,7 +123,7 @@ const Dashboard: React.FC = () => {
 
       
       {/* --- 1. HERO SECTION --- */}
-      <section id="home" className="min-h-screen flex items-center justify-center text-center relative pt-20 z-10 overflow-hidden">
+      <section id="home" className="min-h-[calc(100vh-80px)] flex items-center justify-center text-center relative mt-[80px] z-10">
         
         {/* NEON GLOW KHUSUS HERO (Dikembalikan & Dipertegas) */}
         {/* Neon Merah Kanan (Sangat menyala seperti di gambar) */}
