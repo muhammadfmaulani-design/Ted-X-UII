@@ -2,14 +2,15 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 // Import Pages
-import Dashboard from './pages/dashboard'; // Pastikan nama file sesuai (huruf besar/kecil)
+import Dashboard from './pages/dashboard'; 
 import About from './pages/about';
 import Speakers from './pages/speakers'; 
-import Tickets from './pages/tickets';   // Import halaman Tickets
-import Checkout from './pages/checkout'; // Import halaman Checkout
-
+import Tickets from './pages/tickets';   
+import Checkout from './pages/checkout'; 
 // Import Components
 import Header from './components/Header';
+import Footer from './components/Footer';
+import Events from './pages/events';
 
 const App: React.FC = () => {
   return (
@@ -29,8 +30,10 @@ const App: React.FC = () => {
             {/* Rute baru untuk sistem E-Commerce TEDx */}
             <Route path="/tickets" element={<Tickets />} />
             <Route path="/checkout" element={<Checkout />} />
+            <Route path="/events" element={<Events />} />
           </Routes>
         </main>
+        <Footer />
         
       </div>
     </Router>

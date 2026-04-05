@@ -22,20 +22,22 @@ const Header: React.FC = () => {
         {/* Navigasi Desktop */}
         <nav className="hidden md:flex gap-8 items-center">
           <Link to="/" className="text-white no-underline font-semibold uppercase text-sm transition-colors duration-300 hover:text-[#e62b1e]">Home</Link>
+          <Link to="/events" className="text-white no-underline font-semibold uppercase text-sm transition-colors duration-300 hover:text-[#e62b1e]">Events</Link>
           <Link to="/about" className="text-white no-underline font-semibold uppercase text-sm transition-colors duration-300 hover:text-[#e62b1e]">About</Link>
           <Link to="/speakers" className="text-white no-underline font-semibold uppercase text-sm transition-colors duration-300 hover:text-[#e62b1e]">Speakers</Link>
           
           {/* Tombol Desktop - Mengarah ke halaman /tickets */}
-          <Link
-            to="/tickets" 
+          {/* <Link
+            to="/tickets"
             className="bg-[#e62b1e] text-white px-6 py-2.5 rounded font-extrabold tracking-[1px] border border-[#e62b1e] uppercase text-sm transition-all flex items-center gap-2 hover:bg-transparent hover:text-[#e62b1e] no-underline"
           >
             Buy Ticket <Ticket size={16} />
-          </Link>
+          </Link> */}
         </nav>
 
         {/* Tombol Toggle Mobile */}
         <button 
+          disabled
           className="md:hidden text-white cursor-pointer hover:text-[#e62b1e] transition-colors" 
           onClick={toggleMenu} 
           aria-label="Toggle Menu"
@@ -67,6 +69,7 @@ const Header: React.FC = () => {
 
         <div className="flex flex-col gap-6">
           <Link to="/" onClick={toggleMenu} className="text-white text-xl font-semibold uppercase tracking-wider transition-colors hover:text-[#e62b1e] border-b border-[#222] pb-4">Home</Link>
+          <Link to="/events" onClick={toggleMenu} className="text-white text-xl font-semibold uppercase tracking-wider transition-colors hover:text-[#e62b1e] border-b border-[#222] pb-4">Events</Link>
           <Link to="/about" onClick={toggleMenu} className="text-white text-xl font-semibold uppercase tracking-wider transition-colors hover:text-[#e62b1e] border-b border-[#222] pb-4">About</Link>
           <Link to="/speakers" onClick={toggleMenu} className="text-white text-xl font-semibold uppercase tracking-wider transition-colors hover:text-[#e62b1e] border-b border-[#222] pb-4">Speakers</Link>
         </div>
