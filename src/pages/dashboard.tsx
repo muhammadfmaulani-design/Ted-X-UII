@@ -366,19 +366,19 @@ const Dashboard: React.FC = () => {
           </RevealOnScroll>
 
           <RevealOnScroll animation="fade-up" delay="delay-200">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
+            {/* Menggunakan items-stretch agar tinggi card selalu sama (equal height) */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-stretch">
               
               {/* Ticket Type 1: Single Session */}
-              <div className="bg-[#020d24]/60 backdrop-blur-xl border border-[#1a2b4c] rounded-3xl p-8 md:p-10 transition-all duration-300 hover:border-[#4a6394] hover:-translate-y-2">
+              <div className="flex flex-col bg-[#020d24]/60 backdrop-blur-xl border border-[#1a2b4c] rounded-3xl p-8 md:p-10 transition-all duration-300 hover:border-[#4a6394] hover:-translate-y-2">
                 <h3 className="text-2xl font-bold uppercase tracking-wider text-white mb-2">Single Session</h3>
                 <p className="text-[#8ba2c9] text-sm mb-8 h-10">Perfect for attendees who only want to experience the first session.</p>
                 
-                <ul className="space-y-4 mb-10">
+                <ul className="space-y-4 mb-10 flex-grow">
                   <li className="flex items-start gap-3 text-[#e5e5e5]">
                     <CheckCircle size={20} className="text-[#4a6394] shrink-0 mt-0.5" />
                     <span>Access to Session 1 only</span>
                   </li>
-                  {/* Fasilitas yang dicoret untuk Single Session */}
                   <li className="flex items-start gap-3 text-zinc-600">
                     <CheckCircle size={20} className="shrink-0 mt-0.5" />
                     <span className="line-through decoration-zinc-600">Access to All Sessions</span>
@@ -397,13 +397,15 @@ const Dashboard: React.FC = () => {
                   </li>
                 </ul>
 
-                <button className="w-full py-4 rounded-xl font-bold tracking-wider uppercase border border-[#2a4374] text-white hover:bg-[#1a2b4c] transition-colors">
+                {/* Bagian navigasi dinonaktifkan sementara (Commented Out) */}
+                {/* <button className="w-full py-4 rounded-xl font-bold tracking-wider uppercase border border-[#2a4374] text-white hover:bg-[#1a2b4c] transition-colors">
                   Select Single
-                </button>
+                </button> 
+                */}
               </div>
 
               {/* Ticket Type 2: Full Session (Highlighted) */}
-              <div className="bg-gradient-to-b from-[#e62b1e]/10 to-[#020d24]/80 backdrop-blur-xl border-2 border-[#e62b1e] rounded-3xl p-8 md:p-10 relative transform md:-translate-y-4 shadow-[0_20px_50px_rgba(230,43,30,0.2)]">
+              <div className="flex flex-col bg-gradient-to-b from-[#e62b1e]/10 to-[#020d24]/80 backdrop-blur-xl border-2 border-[#e62b1e] rounded-3xl p-8 md:p-10 relative transition-all duration-300 hover:-translate-y-2 shadow-[0_20px_50px_rgba(230,43,30,0.2)]">
                 
                 <div className="absolute -top-5 left-1/2 -translate-x-1/2 bg-[#e62b1e] text-white px-6 py-2 rounded-full text-sm font-bold tracking-widest uppercase flex items-center gap-2 shadow-lg">
                   <Star size={16} fill="white" /> Most Popular
@@ -412,7 +414,7 @@ const Dashboard: React.FC = () => {
                 <h3 className="text-2xl font-bold uppercase tracking-wider text-white mb-2 mt-2">Full Session</h3>
                 <p className="text-[#8ba2c9] text-sm mb-8 h-10">The ultimate TEDxUII experience with all exclusive perks.</p>
                 
-                <ul className="space-y-4 mb-10">
+                <ul className="space-y-4 mb-10 flex-grow">
                   <li className="flex items-start gap-3 text-white font-medium">
                     <CheckCircle size={20} className="text-[#e62b1e] shrink-0 mt-0.5" />
                     <span>Access to All Sessions (Full Day)</span>
@@ -431,9 +433,11 @@ const Dashboard: React.FC = () => {
                   </li>
                 </ul>
 
-                <a href="/checkout" className="block w-full py-4 rounded-xl font-bold tracking-wider uppercase bg-[#e62b1e] text-white text-center hover:bg-red-700 hover:shadow-[0_0_20px_rgba(230,43,30,0.6)] transition-all">
+                {/* Bagian navigasi dinonaktifkan sementara (Commented Out) */}
+                {/* <a href="/checkout" className="block w-full py-4 rounded-xl font-bold tracking-wider uppercase bg-[#e62b1e] text-white text-center hover:bg-red-700 hover:shadow-[0_0_20px_rgba(230,43,30,0.6)] transition-all">
                   Get Full Session
-                </a>
+                </a> 
+                */}
               </div>
 
             </div>
