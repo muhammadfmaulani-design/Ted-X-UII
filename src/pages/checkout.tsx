@@ -45,7 +45,7 @@ const Checkout: React.FC = () => {
     try {
       const apiUrl = import.meta.env.VITE_API_URL;
 
-      const response = await fetch(`${apiUrl}/orders/`, {
+      const response = await fetch(`${apiUrl}/orders`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
