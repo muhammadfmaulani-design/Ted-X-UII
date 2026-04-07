@@ -53,9 +53,8 @@ const Footer = () => {
             <li className="flex items-start">
               <MapPin size={18} className="text-[#e62b1e] mr-3 mt-1 flex-shrink-0" />
               <span>
-                Theatrical Room, General Lecture Building, 2nd Floor<br />
-                Integrated Campus of the Islamic University of Indonesia, <br />
-                Kaliurang Street, Km. 14.5, Sleman, Yogyakarta Special Region.
+                Theatrical 2nd Floor<br />
+                GKU Sardjito UII
               </span>
             </li>
             

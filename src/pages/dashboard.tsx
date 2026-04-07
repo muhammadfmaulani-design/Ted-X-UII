@@ -161,8 +161,8 @@ const Dashboard: React.FC = () => {
               <div className="flex items-center gap-3 font-bold bg-[#020d24]/60 backdrop-blur-lg px-6 py-4 rounded-full border border-white/10 text-left text-white shadow-lg w-full sm:w-auto">
                 <MapPin className="text-[#e62b1e] flex-shrink-0" size={20} /> 
                 <span className="tracking-widest text-xs md:text-sm">
-                  Theatrical Room, General Lecture Building, 2nd Floor <br />
-                  Islamic University of Indonesia
+                  Theatrical 2nd FLoor<br />
+                  GKU Sardjito UII
                 </span>
               </div>
             </div>
