@@ -37,7 +37,6 @@ const Header: React.FC = () => {
 
         {/* Tombol Toggle Mobile */}
         <button 
-          disabled
           className="md:hidden text-white cursor-pointer hover:text-[#e62b1e] transition-colors" 
           onClick={toggleMenu} 
           aria-label="Toggle Menu"
