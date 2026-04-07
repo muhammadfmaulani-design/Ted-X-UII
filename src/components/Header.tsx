@@ -74,13 +74,13 @@ const Header: React.FC = () => {
         </div>
         
         {/* Tombol Mobile ditaruh paling bawah - Mengarah ke /tickets */}
-        {/* <Link 
+        <Link 
           to="/tickets"
           onClick={toggleMenu} 
           className="mt-auto bg-[#e62b1e] text-white px-6 py-4 w-full text-center rounded font-extrabold tracking-[1px] border border-[#e62b1e] uppercase text-sm flex justify-center items-center gap-2 hover:bg-transparent hover:text-[#e62b1e] transition-all no-underline"
         >
           Buy Ticket <Ticket size={18} />
-        </Link> */}
+        </Link>
       </div>
     </>
   );
