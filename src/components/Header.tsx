@@ -27,12 +27,12 @@ const Header: React.FC = () => {
           <Link to="/speakers" className="text-white no-underline font-semibold uppercase text-sm transition-colors duration-300 hover:text-[#e62b1e]">Speakers</Link>
           
           {/* Tombol Desktop - Mengarah ke halaman /tickets */}
-          {/* <Link
+          <Link
             to="/tickets"
             className="bg-[#e62b1e] text-white px-6 py-2.5 rounded font-extrabold tracking-[1px] border border-[#e62b1e] uppercase text-sm transition-all flex items-center gap-2 hover:bg-transparent hover:text-[#e62b1e] no-underline"
           >
-            Buy Ticket <Ticket size={16} />
-          </Link> */}
+            Get Ticket <Ticket size={16} />
+          </Link>
         </nav>
 
         {/* Tombol Toggle Mobile */}

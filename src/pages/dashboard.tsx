@@ -169,12 +169,12 @@ const Dashboard: React.FC = () => {
           </RevealOnScroll>
 
           <RevealOnScroll animation="pop-in" delay="delay-500">
-            <a 
-              href="#tickets" 
-              className="inline-flex items-center justify-center gap-3 bg-[#e62b1e] text-white px-10 py-4 font-bold rounded-full transition-all duration-300 hover:bg-[#000b18] hover:text-[#e62b1e] border-2 border-[#e62b1e] hover:shadow-[0_0_30px_rgba(230,43,30,0.6)] uppercase tracking-wider w-full sm:w-auto"
+            <Link 
+              to="/tickets" 
+              className="inline-flex items-center justify-center gap-3 bg-[#e62b1e] text-white px-10 py-4 font-bold rounded-full transition-all duration-300 hover:bg-[#000b18] hover:text-[#e62b1e] border-2 border-[#e62b1e] hover:shadow-[0_0_30px_rgba(230,43,30,0.6)] uppercase tracking-wider w-full sm:w-auto no-underline"
             >
               GET TICKET <Ticket size={18} />
-            </a>
+            </Link>
           </RevealOnScroll>
         </div>
       </section>
@@ -402,6 +402,14 @@ const Dashboard: React.FC = () => {
                     <span className="line-through decoration-zinc-600">TEDxUII Merchandise</span>
                   </li>
                 </ul>
+
+                <Link 
+                  to="/tickets" 
+                  state={{ autoOpenTicketName: "Morning" }} 
+                  className="block w-full py-3 md:py-4 mt-auto rounded-xl font-bold tracking-wider uppercase border border-[#2a4374] text-white text-center hover:bg-[#1a2b4c] transition-colors text-sm md:text-base no-underline"
+                >
+                  Get Ticket
+                </Link>
               </div>
 
               {/* Ticket Type 2: Afternoon Session */}
@@ -431,6 +439,14 @@ const Dashboard: React.FC = () => {
                     <span className="line-through decoration-zinc-600">TEDxUII Merchandise</span>
                   </li>
                 </ul>
+
+                <Link 
+                  to="/tickets" 
+                  state={{ autoOpenTicketName: "Afternoon" }} 
+                  className="block w-full py-3 md:py-4 mt-auto rounded-xl font-bold tracking-wider uppercase border border-[#2a4374] text-white text-center hover:bg-[#1a2b4c] transition-colors text-sm md:text-base no-underline"
+                >
+                  Get Ticket
+                </Link>
               </div>
 
               {/* Ticket Type 3: Full Session (Highlighted) */}
@@ -443,7 +459,7 @@ const Dashboard: React.FC = () => {
                 <h3 className="text-xl md:text-2xl font-bold uppercase tracking-wider text-white mb-2 mt-2">Full Session</h3>
                 <p className="text-[#8ba2c9] text-xs md:text-sm mb-6 md:mb-8 h-auto md:h-10">The ultimate TEDxUII experience with all exclusive perks.</p>
                 
-                <ul className="space-y-3 md:space-y-4 mb-2 md:mb-10 flex-grow text-sm md:text-base">
+                <ul className="space-y-3 md:space-y-4 mb-6 md:mb-10 flex-grow text-sm md:text-base">
                   <li className="flex items-start gap-3 text-white font-medium">
                     <CheckCircle size={18} className="text-[#e62b1e] shrink-0 mt-0.5 md:w-[20px]" />
                     <span>Access to All Sessions (Full Day)</span>
@@ -461,6 +477,14 @@ const Dashboard: React.FC = () => {
                     <span>Exclusive TEDxUII Merchandise</span>
                   </li>
                 </ul>
+
+                <Link 
+                  to="/tickets" 
+                  state={{ autoOpenTicketName: "Full" }} 
+                  className="block w-full py-3 md:py-4 mt-auto rounded-xl font-bold tracking-wider uppercase bg-[#e62b1e] text-white text-center hover:bg-red-700 hover:shadow-[0_0_20px_rgba(230,43,30,0.6)] transition-all text-sm md:text-base no-underline"
+                >
+                  Get Full Session
+                </Link>
               </div>
 
             </div>

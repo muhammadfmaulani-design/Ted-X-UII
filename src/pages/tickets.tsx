@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom'; // PENTING: useLocation ditambahkan
 import { Ticket, Plus, Minus, X, ArrowRight, Clock, Star } from 'lucide-react';
 import RevealOnScroll from '../components/RevealOnScroll';
 import { supabase } from '../supabase';
@@ -16,6 +16,8 @@ interface TicketCategory {
 
 const Tickets: React.FC = () => {
   const navigate = useNavigate();
+  const location = useLocation(); // Diperlukan untuk membaca state dari Dashboard
+  
   const [ticketCategories, setTicketCategories] = useState<TicketCategory[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   
@@ -65,6 +67,34 @@ const Tickets: React.FC = () => {
     };
   }, []);
 
+  // --- LOGIKA AUTO-OPEN POP-UP ---
+  useEffect(() => {
+    const autoOpenKeyword = location.state?.autoOpenTicketName;
+    
+    // Jika ada keyword dari Dashboard dan data tiket sudah di-load
+    if (autoOpenKeyword && ticketCategories.length > 0) {
+      
+      // Cari tiket yang namanya mengandung kata kunci (Abaikan huruf besar/kecil)
+      const targetTicket = ticketCategories.find((t) => 
+        t.name.toLowerCase().includes(autoOpenKeyword.toLowerCase())
+      );
+
+      if (targetTicket) {
+        const remainingTickets = targetTicket.quota - targetTicket.sold;
+        
+        // Buka Pop-up HANYA jika tiket aktif dan belum Sold Out
+        if (targetTicket.is_active && remainingTickets > 0) {
+          setSelectedTicket(targetTicket);
+          setQuantity(1);
+          
+          // Bersihkan state agar pop-up tidak terbuka lagi jika user me-refresh halaman
+          navigate(location.pathname, { replace: true, state: {} });
+        }
+      }
+    }
+  }, [ticketCategories, location, navigate]);
+  // ---------------------------------
+
   const handleOpenModal = (ticket: TicketCategory, isAvailable: boolean) => {
     if (isAvailable) {
       setSelectedTicket(ticket);
@@ -91,7 +121,6 @@ const Tickets: React.FC = () => {
       <div className="absolute top-[-10%] right-[-10%] w-[50vw] h-[50vw] bg-[#e62b1e] rounded-full blur-[200px] opacity-[0.15] pointer-events-none z-0"></div>
       <div className="absolute bottom-[-10%] left-[-10%] w-[50vw] h-[50vw] bg-[#003cff] rounded-full blur-[250px] opacity-[0.1] pointer-events-none z-0"></div>
 
-      {/* PERUBAHAN 1: max-w diperlebar jadi 1200px */}
       <div className="max-w-[1200px] mx-auto px-6 md:px-8 py-16 relative z-10">
         <RevealOnScroll animation="fade-up">
           <div className="text-center mb-16 md:mb-20">
@@ -104,7 +133,6 @@ const Tickets: React.FC = () => {
           </div>
         </RevealOnScroll>
 
-        {/* PERUBAHAN 2: lg:grid-cols-3 agar sejajar 3 kolom di laptop, dan max-w-4xl dihapus */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch">
           {loading ? (
             <div className="col-span-full flex flex-col items-center justify-center py-20">
@@ -125,8 +153,7 @@ const Tickets: React.FC = () => {
               if (isSoldOut) statusText = "Sold Out";
               else if (isAvailable) statusText = "Available";
 
-              // PERUBAHAN 3: Jika di database Full Session adalah tiket ke-3, maka indexnya 2 (0, 1, 2)
-              // Kalau mau aman pakai nama, bisa: const isPremium = ticket.name.toLowerCase().includes("full");
+              // Asumsi tiket ke-3 (index 2) adalah yang Premium/Full Session
               const isPremium = index === 2; 
 
               return (
@@ -142,7 +169,6 @@ const Tickets: React.FC = () => {
                       }
                     `}
                   >
-                    {/* Badge Most Popular otomatis untuk tiket Premium */}
                     {isPremium && isAvailable && (
                       <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-[#e62b1e] text-white px-5 py-1.5 rounded-full text-[0.7rem] font-bold tracking-widest uppercase flex items-center gap-1.5 shadow-lg whitespace-nowrap">
                         <Star size={14} fill="white" /> Most Popular
@@ -159,7 +185,6 @@ const Tickets: React.FC = () => {
                           {statusText}
                         </div>
                         
-                        {/* Fitur FOMO */}
                         {isAvailable && remainingTickets <= 10 && (
                           <div className="flex items-center gap-1.5 text-[#e62b1e] text-xs font-bold animate-pulse mt-1">
                             <Clock size={14} /> Only {remainingTickets} left!
@@ -212,7 +237,7 @@ const Tickets: React.FC = () => {
               <X size={20} />
             </button>
 
-            <h3 className="text-2xl font-black text-white uppercase tracking-tight mb-2 mt-2">Berapa tiket?</h3>
+            <h3 className="text-2xl font-black text-white uppercase tracking-tight mb-2 mt-2">How many tickets?</h3>
             <p className="text-[#8ba2c9] text-sm mb-8 font-light">
               <strong className="text-white">{selectedTicket.name}</strong> • Rp {selectedTicket.price.toLocaleString('id-ID')}
             </p>
