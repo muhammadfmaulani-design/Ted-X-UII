@@ -69,8 +69,7 @@ const Events = () => {
             TEDx<span className="text-[#eb0028]">UII</span> EVENTS
           </h1>
           <p className="text-[#8ba2c9] max-w-2xl text-lg md:text-xl leading-relaxed mx-auto md:mx-0">
-            Temukan rangkaian acara kami yang dirancang untuk memicu diskusi mendalam, 
-            menghubungkan pikiran-pikiran brilian, dan menciptakan ide-ide yang layak disebarkan.
+            Discover our series of events designed to spark thoughtful discussions, connect brilliant minds, and create ideas worth sharing.
           </p>
         </header>
 
@@ -100,7 +99,7 @@ const Events = () => {
                         alt={mainEvent.title}
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                       />
-                      {/* Badge status (Opsional) */}
+                      {/* Badge status*/}
                       <div className="absolute top-6 left-6 z-20 bg-[#eb0028] text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow-[0_0_10px_rgba(235,0,40,0.5)]">
                         Featured
                       </div>
@@ -141,19 +140,19 @@ const Events = () => {
                       </div>
 
                       <div className="flex flex-col sm:flex-row gap-4">
-                        <a 
+                        {/* <a 
                           href="/tickets" 
                           className="bg-[#eb0028] hover:bg-red-700 text-white font-bold py-4 px-8 rounded-full text-center transition-all transform hover:scale-105 shadow-[0_0_15px_rgba(235,0,40,0.4)]"
                         >
                           Get Tickets
-                        </a>
+                        </a> */}
                         <a 
                           href="https://www.instagram.com/p/DUvNSEWjxRf/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" 
                           target="_blank"
                           rel="noopener noreferrer"
                           className="bg-[#1a2b4c]/40 hover:bg-[#1a2b4c]/80 border border-[#2a4374] text-white font-bold py-4 px-8 rounded-full text-center transition-all inline-flex justify-center items-center"
                         >
-                          Learn More <ArrowRight size={18} className="ml-2" />
+                          See in Instagram<ArrowRight size={18} className="ml-2" />
                         </a>
                       </div>
                     </div>

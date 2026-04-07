@@ -16,7 +16,7 @@ const Footer = () => {
             TEDx<span className="text-[#eb0028]">UII</span>
           </h2>
           <p className="text-sm leading-relaxed text-zinc-400">
-            Sebuah wadah untuk menyebarkan gagasan-gagasan cemerlang. Diselenggarakan secara independen dari jantung Universitas Islam Indonesia untuk menginspirasi perubahan positif.
+            Platform for sharing brilliant ideas. Independently organized from the heart of the Islamic University of Indonesia to inspire positive change.
           </p>
           
         </div>
@@ -53,9 +53,9 @@ const Footer = () => {
             <li className="flex items-start">
               <MapPin size={18} className="text-[#e62b1e] mr-3 mt-1 flex-shrink-0" />
               <span>
-                Auditorium KH. Abdulkahar Muzakkir<br />
-                Kampus Terpadu Universitas Islam Indonesia<br />
-                Jl. Kaliurang Km. 14,5, Sleman, DIY
+                Theatrical Room, General Lecture Building, 2nd Floor<br />
+                Integrated Campus of the Islamic University of Indonesia, <br />
+                Kaliurang Street, Km. 14.5, Sleman, Yogyakarta Special Region.
               </span>
             </li>
             

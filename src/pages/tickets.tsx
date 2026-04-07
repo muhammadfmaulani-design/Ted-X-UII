@@ -91,7 +91,8 @@ const Tickets: React.FC = () => {
       <div className="absolute top-[-10%] right-[-10%] w-[50vw] h-[50vw] bg-[#e62b1e] rounded-full blur-[200px] opacity-[0.15] pointer-events-none z-0"></div>
       <div className="absolute bottom-[-10%] left-[-10%] w-[50vw] h-[50vw] bg-[#003cff] rounded-full blur-[250px] opacity-[0.1] pointer-events-none z-0"></div>
 
-      <div className="max-w-[1000px] mx-auto px-6 md:px-8 py-16 relative z-10">
+      {/* PERUBAHAN 1: max-w diperlebar jadi 1200px */}
+      <div className="max-w-[1200px] mx-auto px-6 md:px-8 py-16 relative z-10">
         <RevealOnScroll animation="fade-up">
           <div className="text-center mb-16 md:mb-20">
             <h1 className="text-[3rem] md:text-[4.5rem] font-black uppercase tracking-tighter text-white leading-none drop-shadow-md">
@@ -103,8 +104,8 @@ const Tickets: React.FC = () => {
           </div>
         </RevealOnScroll>
 
-        {/* PERUBAHAN: max-w-4xl agar 2 kartu tidak terlalu melebar, dan grid-cols-2 khusus untuk 2 tiket */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 max-w-4xl mx-auto items-stretch">
+        {/* PERUBAHAN 2: lg:grid-cols-3 agar sejajar 3 kolom di laptop, dan max-w-4xl dihapus */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch">
           {loading ? (
             <div className="col-span-full flex flex-col items-center justify-center py-20">
               <div className="w-12 h-12 border-4 border-[#1a2b4c] border-t-[#e62b1e] rounded-full animate-spin mb-4 shadow-[0_0_15px_rgba(230,43,30,0.5)]"></div>
@@ -124,8 +125,9 @@ const Tickets: React.FC = () => {
               if (isSoldOut) statusText = "Sold Out";
               else if (isAvailable) statusText = "Available";
 
-              // Asumsi: Tiket index ke-1 (atau harga termahal) adalah tiket Full Session/Premium
-              const isPremium = index === 1;
+              // PERUBAHAN 3: Jika di database Full Session adalah tiket ke-3, maka indexnya 2 (0, 1, 2)
+              // Kalau mau aman pakai nama, bisa: const isPremium = ticket.name.toLowerCase().includes("full");
+              const isPremium = index === 2; 
 
               return (
                 <RevealOnScroll key={ticket.id} animation="fade-up" delay={`delay-${index * 200}`}>

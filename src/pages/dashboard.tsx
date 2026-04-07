@@ -135,7 +135,7 @@ const Dashboard: React.FC = () => {
         <div className="px-4 w-full relative z-10">
           <RevealOnScroll animation="fade-up" delay="delay-100">
             <h2 className="text-xs md:text-sm tracking-[3px] mb-6 text-[#e62b1e] uppercase font-bold drop-shadow-md">
-              A resilient and sustainable future begins with the current project
+              A resilient and sustainable future begins
             </h2>
           </RevealOnScroll>
           
@@ -149,13 +149,13 @@ const Dashboard: React.FC = () => {
             <div className="flex justify-center gap-4 md:gap-8 mb-12 flex-wrap">
               <div className="flex items-center gap-3 font-bold bg-[#020d24]/60 backdrop-blur-lg px-6 py-4 rounded-full border border-white/10 text-white shadow-lg">
                 <Calendar className="text-[#e62b1e]" size={20} /> 
-                <span className="tracking-widest text-sm md:text-base">April 18, 2026</span>
+                <span className="tracking-widest text-sm md:text-base">April 18, 2026. 08:00 AM.</span>
               </div>
               <div className="flex items-center gap-3 font-bold bg-[#020d24]/60 backdrop-blur-lg px-6 py-4 rounded-full border border-white/10 text-left text-white shadow-lg">
                 <MapPin className="text-[#e62b1e] flex-shrink-0" size={20} /> 
                 <span className="tracking-widest text-xs md:text-sm">
-                  Ruang Teatrikal Gedung Kuliah Umum (GKU) <br />
-                  Dr. Sardjito, Universitas Islam Indonesia.
+                  Theatrical Room, General Lecture Building, 2nd Floor <br />
+                  Integrated Campus of the Islamic University of Indonesia,
                 </span>
               </div>
             </div>
@@ -166,7 +166,7 @@ const Dashboard: React.FC = () => {
               href="#tickets" 
               className="inline-flex items-center gap-3 bg-[#e62b1e] text-white px-10 py-4 font-bold rounded-full transition-all duration-300 hover:bg-[#000b18] hover:text-[#e62b1e] border-2 border-[#e62b1e] hover:shadow-[0_0_30px_rgba(230,43,30,0.6)] uppercase tracking-wider"
             >
-              BUY TICKET <Ticket size={18} />
+              GET TICKET <Ticket size={18} />
             </a>
           </RevealOnScroll>
         </div>
@@ -333,7 +333,7 @@ const Dashboard: React.FC = () => {
                     <ArrowRight size={24} className="text-[#8ba2c9] group-hover/viewall:text-white transition-colors" />
                   </div>
                   <span className="text-[#8ba2c9] group-hover/viewall:text-white font-bold tracking-wider uppercase text-sm">
-                    View All <br /> Speakers
+                    View<br /> Speakers
                   </span>
                 </div>
               </Link>
@@ -353,7 +353,7 @@ const Dashboard: React.FC = () => {
 
       {/* --- 5. TICKET FACILITIES SECTION --- */}
       <section id="tickets" className="py-24 px-6 md:px-8 w-full relative z-10 mb-20">
-        <div className="max-w-[1000px] mx-auto">
+        <div className="max-w-[1200px] mx-auto">
           <RevealOnScroll animation="fade-up">
             <div className="text-center mb-16">
               <h2 className="text-[2.5rem] md:text-[3.5rem] uppercase font-black tracking-tighter drop-shadow-md">
@@ -366,26 +366,26 @@ const Dashboard: React.FC = () => {
           </RevealOnScroll>
 
           <RevealOnScroll animation="fade-up" delay="delay-200">
-            {/* Menggunakan items-stretch agar tinggi card selalu sama (equal height) */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-stretch">
+            {/* Menggunakan grid-cols-3 untuk layar besar agar 3 tiket sejajar rapi */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch">
               
-              {/* Ticket Type 1: Single Session */}
-              <div className="flex flex-col bg-[#020d24]/60 backdrop-blur-xl border border-[#1a2b4c] rounded-3xl p-8 md:p-10 transition-all duration-300 hover:border-[#4a6394] hover:-translate-y-2">
-                <h3 className="text-2xl font-bold uppercase tracking-wider text-white mb-2">Single Session</h3>
-                <p className="text-[#8ba2c9] text-sm mb-8 h-10">Perfect for attendees who only want to experience the first session.</p>
+              {/* Ticket Type 1: Morning Session */}
+              <div className="flex flex-col bg-[#020d24]/60 backdrop-blur-xl border border-[#1a2b4c] rounded-3xl p-8 transition-all duration-300 hover:border-[#4a6394] hover:-translate-y-2">
+                <h3 className="text-2xl font-bold uppercase tracking-wider text-white mb-2">Morning Session</h3>
+                <p className="text-[#8ba2c9] text-sm mb-8 h-10">Perfect for attendees who only want to experience the morning talks.</p>
                 
                 <ul className="space-y-4 mb-10 flex-grow">
                   <li className="flex items-start gap-3 text-[#e5e5e5]">
                     <CheckCircle size={20} className="text-[#4a6394] shrink-0 mt-0.5" />
-                    <span>Access to Session 1 only</span>
+                    <span>Access to Morning Session</span>
                   </li>
                   <li className="flex items-start gap-3 text-zinc-600">
                     <CheckCircle size={20} className="shrink-0 mt-0.5" />
-                    <span className="line-through decoration-zinc-600">Access to All Sessions</span>
+                    <span className="line-through decoration-zinc-600">Access to Afternoon Session</span>
                   </li>
                   <li className="flex items-start gap-3 text-zinc-600">
                     <CheckCircle size={20} className="shrink-0 mt-0.5" />
-                    <span className="line-through decoration-zinc-600">Food & Beverages (Konsumsi)</span>
+                    <span className="line-through decoration-zinc-600">Lunch Included (Konsumsi)</span>
                   </li>
                   <li className="flex items-start gap-3 text-zinc-600">
                     <CheckCircle size={20} className="shrink-0 mt-0.5" />
@@ -397,15 +397,46 @@ const Dashboard: React.FC = () => {
                   </li>
                 </ul>
 
-                {/* Bagian navigasi dinonaktifkan sementara (Commented Out) */}
                 {/* <button className="w-full py-4 rounded-xl font-bold tracking-wider uppercase border border-[#2a4374] text-white hover:bg-[#1a2b4c] transition-colors">
-                  Select Single
-                </button> 
-                */}
+                  Select Morning
+                </button> */}
               </div>
 
-              {/* Ticket Type 2: Full Session (Highlighted) */}
-              <div className="flex flex-col bg-gradient-to-b from-[#e62b1e]/10 to-[#020d24]/80 backdrop-blur-xl border-2 border-[#e62b1e] rounded-3xl p-8 md:p-10 relative transition-all duration-300 hover:-translate-y-2 shadow-[0_20px_50px_rgba(230,43,30,0.2)]">
+              {/* Ticket Type 2: Afternoon Session */}
+              <div className="flex flex-col bg-[#020d24]/60 backdrop-blur-xl border border-[#1a2b4c] rounded-3xl p-8 transition-all duration-300 hover:border-[#4a6394] hover:-translate-y-2">
+                <h3 className="text-2xl font-bold uppercase tracking-wider text-white mb-2">Afternoon Session</h3>
+                <p className="text-[#8ba2c9] text-sm mb-8 h-10">Perfect for attendees who only want to experience the afternoon talks.</p>
+                
+                <ul className="space-y-4 mb-10 flex-grow">
+                  <li className="flex items-start gap-3 text-zinc-600">
+                    <CheckCircle size={20} className="shrink-0 mt-0.5" />
+                    <span className="line-through decoration-zinc-600">Access to Morning Session</span>
+                  </li>
+                  <li className="flex items-start gap-3 text-[#e5e5e5]">
+                    <CheckCircle size={20} className="text-[#4a6394] shrink-0 mt-0.5" />
+                    <span>Access to Afternoon Session</span>
+                  </li>
+                  <li className="flex items-start gap-3 text-zinc-600">
+                    <CheckCircle size={20} className="shrink-0 mt-0.5" />
+                    <span className="line-through decoration-zinc-600">Lunch Included (Konsumsi)</span>
+                  </li>
+                  <li className="flex items-start gap-3 text-zinc-600">
+                    <CheckCircle size={20} className="shrink-0 mt-0.5" />
+                    <span className="line-through decoration-zinc-600">E-Certificate of Attendance</span>
+                  </li>
+                  <li className="flex items-start gap-3 text-zinc-600">
+                    <CheckCircle size={20} className="shrink-0 mt-0.5" />
+                    <span className="line-through decoration-zinc-600">TEDxUII Merchandise</span>
+                  </li>
+                </ul>
+
+                {/* <button className="w-full py-4 rounded-xl font-bold tracking-wider uppercase border border-[#2a4374] text-white hover:bg-[#1a2b4c] transition-colors">
+                  Select Afternoon
+                </button> */}
+              </div>
+
+              {/* Ticket Type 3: Full Session (Highlighted) */}
+              <div className="flex flex-col bg-gradient-to-b from-[#e62b1e]/10 to-[#020d24]/80 backdrop-blur-xl border-2 border-[#e62b1e] rounded-3xl p-8 relative transition-all duration-300 hover:-translate-y-2 shadow-[0_20px_50px_rgba(230,43,30,0.2)]">
                 
                 <div className="absolute -top-5 left-1/2 -translate-x-1/2 bg-[#e62b1e] text-white px-6 py-2 rounded-full text-sm font-bold tracking-widest uppercase flex items-center gap-2 shadow-lg">
                   <Star size={16} fill="white" /> Most Popular
@@ -421,7 +452,7 @@ const Dashboard: React.FC = () => {
                   </li>
                   <li className="flex items-start gap-3 text-white font-medium">
                     <CheckCircle size={20} className="text-[#e62b1e] shrink-0 mt-0.5" />
-                    <span>Food & Beverages Included</span>
+                    <span>Lunch Include</span>
                   </li>
                   <li className="flex items-start gap-3 text-white font-medium">
                     <CheckCircle size={20} className="text-[#e62b1e] shrink-0 mt-0.5" />
@@ -433,11 +464,9 @@ const Dashboard: React.FC = () => {
                   </li>
                 </ul>
 
-                {/* Bagian navigasi dinonaktifkan sementara (Commented Out) */}
                 {/* <a href="/checkout" className="block w-full py-4 rounded-xl font-bold tracking-wider uppercase bg-[#e62b1e] text-white text-center hover:bg-red-700 hover:shadow-[0_0_20px_rgba(230,43,30,0.6)] transition-all">
                   Get Full Session
-                </a> 
-                */}
+                </a> */}
               </div>
 
             </div>
