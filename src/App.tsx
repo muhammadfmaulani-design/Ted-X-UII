@@ -7,10 +7,14 @@ import About from './pages/about';
 import Speakers from './pages/speakers'; 
 import Tickets from './pages/tickets';   
 import Checkout from './pages/checkout'; 
+import Events from './pages/events';
+
+// IMPORT HALAMAN ADMIN RAHASIA
+import AdminDashboard from './pages/admin_dashboard'; 
+
 // Import Components
 import Header from './components/Header';
 import Footer from './components/Footer';
-import Events from './pages/events';
 
 const App: React.FC = () => {
   return (
@@ -27,12 +31,18 @@ const App: React.FC = () => {
             <Route path="/about" element={<About />} />
             <Route path="/speakers" element={<Speakers />} />
             
-            {/* Rute baru untuk sistem E-Commerce TEDx */}
+            {/* Rute sistem E-Commerce TEDx */}
             <Route path="/tickets" element={<Tickets />} />
             <Route path="/checkout" element={<Checkout />} />
             <Route path="/events" element={<Events />} />
+
+            {/* 🔥 JALUR RAHASIA DASHBOARD ADMIN 🔥 */}
+            {/* Bagikan URL ini HANYA ke divisi Finance/Ticketing */}
+            <Route path="/approval-tedx-2026-auth-x9f2k7m" element={<AdminDashboard />} />
+            
           </Routes>
         </main>
+        
         <Footer />
         
       </div>

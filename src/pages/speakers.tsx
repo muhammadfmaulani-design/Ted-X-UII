@@ -8,7 +8,7 @@ interface Speaker {
   name: string;
   role?: string;
   topic?: string;
-  desc?: string;
+  biography?: string; // <-- SUDAH DISESUAIKAN MENJADI BIOGRAPHY
   photo_url?: string;
 }
 
@@ -99,17 +99,12 @@ const Speakers: React.FC = () => {
   return (
     <div className="pt-[80px] min-h-screen bg-[#000814] overflow-hidden relative">
       
-      {/* 1. GLOBAL GRID PATTERN (Opacity dinaikkan dari 0.015 ke 0.03 agar grid lebih tegas seperti di Home) */}
+      {/* 1. GLOBAL GRID PATTERN */}
       <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none z-0"></div>
 
-      {/* 2. GLOBAL AMBIENT NEON (Warna merah dan biru DIPERKUAT agar matching dengan Home Page) */}
-      {/* Glow Merah Kuat di Kanan (seperti gambar) */}
+      {/* 2. GLOBAL AMBIENT NEON */}
       <div className="absolute top-[-10%] right-[-20%] w-[70vw] h-[70vw] bg-[#e62b1e] rounded-full blur-[200px] opacity-[0.18] pointer-events-none z-0"></div>
-      
-      {/* Glow Biru Gelap di Kiri */}
       <div className="absolute top-[30%] left-[-20%] w-[60vw] h-[60vw] bg-[#003cff] rounded-full blur-[250px] opacity-[0.08] pointer-events-none z-0"></div>
-      
-      {/* Glow Merah Tambahan di Bawah agar merata saat di-scroll */}
       <div className="absolute bottom-[-10%] right-[-10%] w-[60vw] h-[60vw] bg-[#e62b1e] rounded-full blur-[250px] opacity-[0.12] pointer-events-none z-0"></div>
 
       {/* 3. HERO SECTION */}
@@ -117,7 +112,6 @@ const Speakers: React.FC = () => {
         <RevealOnScroll animation="fade-up">
           <div className="relative w-full py-16 md:py-24 px-6 text-center">
             
-            {/* Glow khusus di belakang teks dipertahankan */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] md:w-[600px] h-[150px] md:h-[300px] bg-[#e62b1e] opacity-15 blur-[120px] rounded-full pointer-events-none z-[-1]"></div>
 
             <div className="relative z-10">
@@ -230,7 +224,8 @@ const Speakers: React.FC = () => {
                       
                       <div className="text-base md:text-lg text-[#8ba2c9] leading-relaxed max-w-[500px] text-left mx-auto md:mx-0 font-light opacity-80">
                         <p>
-                          {speaker.desc || "Information about this speaker is currently being curated. Check back later for updates."}
+                          {/* <-- SUDAH DISESUAIKAN MENJADI BIOGRAPHY --> */}
+                          {speaker.biography || "Information about this speaker is currently being curated. Check back later for updates."}
                         </p>
                       </div>
 
