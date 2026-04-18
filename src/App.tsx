@@ -10,7 +10,8 @@ import Checkout from './pages/checkout';
 import Events from './pages/events';
 
 // IMPORT HALAMAN ADMIN RAHASIA
-import AdminDashboard from './pages/admin_dashboard'; 
+import AdminDashboard from './pages/admin_dashboard';
+import Feedback from './pages/feedback';
 
 // Import Components
 import Header from './components/Header';
@@ -35,6 +36,9 @@ const App: React.FC = () => {
             <Route path="/tickets" element={<Tickets />} />
             <Route path="/checkout" element={<Checkout />} />
             <Route path="/events" element={<Events />} />
+
+            {/* Halaman Feedback */}
+            <Route path="/feedback" element={<Feedback />} />
 
             {/* 🔥 JALUR RAHASIA DASHBOARD ADMIN 🔥 */}
             {/* Bagikan URL ini HANYA ke divisi Finance/Ticketing */}
