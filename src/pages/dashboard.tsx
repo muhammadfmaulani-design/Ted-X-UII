@@ -34,6 +34,9 @@ const Dashboard: React.FC = () => {
   
   const [pastEvents, setPastEvents] = useState<PastEvent[]>([]);
   const [loadingEvents, setLoadingEvents] = useState<boolean>(true);
+
+  const [sponsors, setSponsors] = useState<string[]>([]);
+  const [loadingSponsors, setLoadingSponsors] = useState<boolean>(true);
   
   // LOGIC SCROLL SLIDER
   const scroll = (direction: 'left' | 'right') => {
@@ -117,6 +120,38 @@ const Dashboard: React.FC = () => {
     return () => {
       supabase.removeChannel(subscription);
     };
+  }, []);
+
+  // FETCH DATA SPONSOR LOGOS
+  useEffect(() => {
+    const fetchSponsorLogos = async () => {
+      try {
+        setLoadingSponsors(true);
+        const { data, error } = await supabase.storage.from('sponsor_logos').list();
+
+        if (error) throw error;
+
+        if (data) {
+          const imageUrls = data
+            .filter((file) => file.name !== '.emptyFolderPlaceholder' && file.name !== '.DS_Store')
+            .map((file) => {
+              const { data: publicUrlData } = supabase
+                .storage
+                .from('sponsor_logos')
+                .getPublicUrl(file.name);
+              return publicUrlData.publicUrl;
+            });
+
+          setSponsors(imageUrls);
+        }
+      } catch (error) {
+        console.error('Log: Gagal memuat logo sponsor:', error);
+      } finally {
+        setLoadingSponsors(false);
+      }
+    };
+
+    fetchSponsorLogos();
   }, []);
 
   return (
@@ -299,7 +334,6 @@ const Dashboard: React.FC = () => {
                   <Link 
                     key={speaker.id} 
                     to={`/speakers#${speaker.id}`}
-                    // scrollIntoView SUDAH DIHAPUS DARI SINI
                     className="flex-none w-[260px] md:w-[280px] bg-[#020d24]/80 border border-[#1a2b4c] rounded-2xl p-6 md:p-8 flex flex-col justify-between items-center text-center snap-start transition-all duration-500 relative hover:-translate-y-3 hover:border-[#e62b1e] hover:shadow-[0_20px_50px_rgba(230,43,30,0.2)] hover:z-20 backdrop-blur-md no-underline cursor-pointer group/speaker"
                   >
                     <div className="w-[100px] h-[100px] md:w-[120px] md:h-[120px] bg-[#000b18] rounded-full flex items-center justify-center overflow-hidden border-2 border-[#2a4374] transition-colors group-hover/speaker:border-[#e62b1e]/50">
@@ -488,6 +522,49 @@ const Dashboard: React.FC = () => {
               </div>
 
             </div>
+          </RevealOnScroll>
+        </div>
+      </section>
+
+      {/* --- 6. SPONSORS SECTION (LIGHT MODE / WHITE BACKGROUND) --- */}
+      <section id="sponsors" className="py-16 md:py-24 px-6 md:px-8 w-full relative z-10 bg-white text-gray-900 border-t-4 border-[#e62b1e]">
+        <div className="max-w-[1200px] mx-auto text-center">
+          <RevealOnScroll animation="fade-up">
+            <h2 className="text-[2rem] md:text-[3rem] uppercase font-black tracking-tighter drop-shadow-sm mb-4 text-gray-900">
+              SUPPORTED <span className="text-[#e62b1e]">BY</span>
+            </h2>
+            <p className="text-gray-600 text-sm md:text-base max-w-2xl mx-auto font-light mb-12 tracking-wide">
+              Mitra dan kolaborator luar biasa yang mewujudkan ide menjadi nyata.
+            </p>
+          </RevealOnScroll>
+
+          <RevealOnScroll animation="fade-up" delay="delay-200">
+            {loadingSponsors ? (
+              <div className="flex justify-center items-center py-10">
+                <div className="text-gray-500 animate-pulse font-medium tracking-widest uppercase text-sm">
+                  Loading Partners...
+                </div>
+              </div>
+            ) : sponsors.length > 0 ? (
+              <div className="flex flex-wrap justify-center items-center gap-6 md:gap-10">
+                {sponsors.map((url, index) => (
+                  <div 
+                    key={index} 
+                    className="w-28 h-28 md:w-40 md:h-40 flex justify-center items-center p-5 bg-white border border-gray-200 rounded-3xl shadow-sm hover:border-gray-300 hover:shadow-lg transition-all duration-500 hover:-translate-y-2"
+                  >
+                    <img 
+                      src={url} 
+                      alt={`Sponsor ${index + 1}`} 
+                      className="max-w-full max-h-full object-contain transition-transform duration-500 hover:scale-105" 
+                    />
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <div className="text-center text-gray-500 italic py-8 border border-gray-200 rounded-2xl bg-gray-50 max-w-md mx-auto">
+                No sponsors uploaded yet.
+              </div>
+            )}
           </RevealOnScroll>
         </div>
       </section>

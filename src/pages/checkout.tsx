@@ -156,7 +156,7 @@ const Checkout: React.FC = () => {
             <div className="bg-white p-4 rounded-xl border border-gray-200">
               <p className="text-xs text-gray-500 font-bold uppercase tracking-wider mb-1">Bank Mandiri</p>
               <p className="text-xl font-black tracking-widest text-gray-900">1120022370774</p>
-              <p className="text-sm font-medium text-gray-600 mt-1">a.n. Panitia TEDxUII</p>
+              <p className="text-sm font-medium text-gray-600 mt-1">a.n. Erin Biasmalia</p>
             </div>
           </div>
 
